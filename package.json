@@ -1,0 +1,14 @@
+{
+  "name": "PhotonEmitter",
+  "main": "server.js",
+  "dependencies": {
+    "cors": "~2.7.1",
+    "express": "~4.13.3",
+    "mongoose": "~4.3.1",
+    "body-parser": "~1.14.1",
+    "method-override": "~2.0.2"
+  },
+  "devDependencies": {
+    "method-override": "^2.0.2"
+  }
+}

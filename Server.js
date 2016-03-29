@@ -1,0 +1,27 @@
+/**
+ * Created by dcreey on 12/15/2015.
+ */
+var express = require("express");
+
+var app = express();
+var cors = require("cors");
+var bodyParser = require("body-parser");
+var methodOverride = require("method-override");
+var mongoose = require("mongoose");
+
+var db = require('./config/db');
+var port = process.env.PORT || 3001;
+
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride('X-HTTP-Method-Override'));
+app.use(express.static(__dirname + '/public'));
+
+require('./server/routes')(app);
+
+mongoose.connect(db.url);
+
+app.listen(port);
+
+exports = module.exports = app;
