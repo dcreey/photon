@@ -10,7 +10,13 @@ var methodOverride = require("method-override");
 var mongoose = require("mongoose");
 
 var db = require('./config/db');
+var photon = require('././config/photon');
 var port = process.env.PORT || 3001;
+
+var path = require('path');
+
+global.appRoot = path.resolve(__dirname);
+global.photon = photon;
 
 app.use(cors());
 app.use(bodyParser.json());

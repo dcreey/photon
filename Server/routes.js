@@ -3,9 +3,14 @@
  */
 
 var User = require("./models/user");
+var Oauth = require("./models/oauthToken");
+var photon = require("./photonService/photon.js");
 
 module.exports = function(app) {
 
+    app.get("/api/oauth", function(req,res){
+        photon.getAllAuthTokens((response) => { res.json(response);} );
+    });
     app.get("/api/user", function(req,res){
         User.find(function(err,users){
             res.json(users);
@@ -19,9 +24,15 @@ module.exports = function(app) {
             if(err){console.log(err);}
             res.send();
         });
+    });
+
+    app.post("/api/oauth/add",function(req,res){
+        var response = photon.refreshAuthToken();
     })
 
     app.get('*', function(req, res) {
-        res.sendfile('./public/index.html'); // load our public/index.html file
+        res.sendFile('./public/index.html'); // load our public/index.html file
     });
+
+
 };

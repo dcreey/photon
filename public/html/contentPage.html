@@ -1,0 +1,10 @@
+<div class="container" ng-controller="contentCtrl as content">
+    <ul ng-repeat="user in content.users">
+        <li>{{ user.name }}</li>
+    </ul>
+
+    {{ 2 + 2 }}
+
+    <input type="text" ng-model="content.newUser" />
+    <button ng-model="btnAddUser" ng-click="content.saveUser(content.newUser)">Add User</button>
+</div>

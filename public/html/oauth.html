@@ -1,0 +1,17 @@
+<div ng-controller="oauthCtrl as oauth">
+    <div class="row">
+        <h3>Current OAuth Token:{{oauth.token}}</h3>
+    </div>
+    <div class="row">
+        <h6>Refresh OAuth Token</h6>
+        <button ng-click="oauth.refreshToken()" ng-disabled="oauth.token != null">Request New Token</button>
+    </div>
+
+    <div class="row">
+        <h6>Get All OAuth Tokens</h6>
+        <button ng-click="oauth.loadTokens()">Get Tokens</button>
+        <ul ng-repeat="token in oauth.tokens">
+            <li>{{ token }}</li>
+        </ul>
+    </div>
+</div>

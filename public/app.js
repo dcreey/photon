@@ -8,18 +8,30 @@ var photon = angular.module("photon", ['ui.router'])
     function ($rootScope,   $state,   $stateParams) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
+        $rootScope.baseUrl = "http://127.0.0.1:3001";
     }]
-)
-.config(['$stateProvider', '$urlRouterProvider',
-    function ($stateProvider,   $urlRouterProvider) {
-        $stateProvider
-            .state("home", {
-                url: "/",
-                template: "html/landingPage.html",
-                controller:"controllers/landingPage.js"
-            });
-    }
-]);
+);
+photon.config(function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/home');
+    $stateProvider
+        .state('home', {
+            url: '/home',
+            templateUrl: 'html/landingPage.html'
+        })
+        .state('oauth', {
+            url: '/oauth',
+            templateUrl: 'html/oauth.html'
+        })
+        .state('content', {
+            url: '/content',
+            templateUrl: 'html/contentPage.html'
+        })
+        .state('about', {
+            url: '/about',
+            templateUrl: 'html/about.html'
+        });
+
+});
 
 photon.directive('header', function () {
     return {
@@ -45,13 +57,17 @@ photon.directive('footer', function () {
 
 photon.controller("photonCtrl", function($http){
     var app = this;
+})
+
+photon.controller("contentCtrl", function($scope,$http){
+    var content = this;
 
     function loadUsers() {
         $http.get("http://localhost:3001/api/user").success(function (users) {
-            app.users = users;
+            content.users = users;
         });
     }
-    app.saveUser = function(newUser) {
+    content.saveUser = function(newUser) {
         $http.post("http://localhost:3001/api/user/add", {name: newUser}).success(function () {
             console.log("success");
             loadUsers();

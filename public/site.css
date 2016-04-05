@@ -9,17 +9,17 @@
 }
 
 .header{
-    position:absolute;
     background-color:black;
     color:orange;
     top:0;
 }
 
 .footer{
-    position: absolute;
+    position: fixed;
     background-color: black;
     color:orange;
     bottom:0;
+    width:100%;
 }
 
 .main-content{
