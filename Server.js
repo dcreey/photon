@@ -10,7 +10,7 @@ var methodOverride = require("method-override");
 var mongoose = require("mongoose");
 
 var db = require('./config/db');
-var photon = require('././config/photon');
+var photon = require('./config/photon');
 var port = process.env.PORT || 3001;
 
 var path = require('path');
