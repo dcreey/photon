@@ -1,7 +1,7 @@
 {
   "name": "PhotonEmitter",
-  "version" : "0.0.1",
-  "description" : "A Test Environment for Photon IOT Device Control",
+  "version": "0.0.1",
+  "description": "A Test Environment for Photon IOT Device Control",
   "main": "server.js",
   "dependencies": {
     "body-parser": "1.14.x",
@@ -9,17 +9,21 @@
     "express": "4.13.x",
     "kerberos": "0.0.x",
     "method-override": "2.0.x",
+    "mongodb":"2.1.x",
     "mongoose": "4.3.x",
     "npm": "^3.8.3",
-    "particle-api-js": "5.2.x"
+    "particle-api-js": "5.2.x",
+    "rootpath": "^0.1.2"
   },
   "devDependencies": {
+    "expect": "^1.18.0",
     "grunt": "^1.0.1",
     "karma": "^0.13.22",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "should": "^8.3.1"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/dcreey/photon"
+    "type": "git",
+    "url": "https://github.com/dcreey/photon"
   }
 }

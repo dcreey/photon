@@ -4,12 +4,16 @@
 
 var User = require("./models/user");
 var Oauth = require("./models/oauthToken");
-var photon = require("./photonService/photon.js");
+var photon = require("./services/photonService.js")();
 
 module.exports = function(app) {
 
     app.get("/api/oauth", function(req,res){
-        photon.getAllAuthTokens((response) => { res.json(response);} );
+        photon.login().then(() => {
+            photon.getAllAuthTokens.then((response) => {
+                res.json(response);
+            });
+        })
     });
     app.get("/api/user", function(req,res){
         User.find(function(err,users){
