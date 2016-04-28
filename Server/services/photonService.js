@@ -12,17 +12,16 @@ var password = photon.password;
 
 var token;
 
-function Photon() {
-
+function Photon(authToken) {
+    token = authToken;
 }
 
 Photon.prototype = {
     login: function (){
-        return new Promise(function (resolve, reject) {
+        return new Promise((resolve, reject) => {
             particle.login({username: username, password: password}).then((data) => {
-                    console.log('API call completed on promise resolve: ', data.body.access_token);
                     token = data.body.access_token;
-                    resolve();
+                    resolve(token);
                 }, (err) => {
                     console.log('API call completed on promise fail: ', err);
                     reject(err);
@@ -43,18 +42,9 @@ Photon.prototype = {
             });
         })
     },
-
-    getCurrentAuthToken: function() {
-
-    },
-
-    refreshAuthToken: function() {
-
-    },
-
-    getDevices: function() {
+    removeAuthToken: function(authToken) {
         return new Promise((resolve, reject) => {
-            particle.listDevices({auth: token}).then((data) => {
+            particle.removeAccessToken({username: username, password: password, auth: authToken}).then((data) => {
                 resolve(data.body);
             }, (err) =>{
                 console.log('error on listing devices: ', err);

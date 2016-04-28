@@ -12,7 +12,9 @@ describe('Photon Service Test Cases', () => {
     var photon = new service();
 
     before((done) => {
-        photon.login().then(() => {
+        photon.login().then((token) => {
+            console.log('Token is:', token)
+            this.token = token;
             done();
         })
     });
@@ -28,9 +30,9 @@ describe('Photon Service Test Cases', () => {
         })
     })
 
-    it('should have at least one device on record', (done) => {
-        photon.getDevices().then((data) => {
-            expect(data.length > 0).toBe(true);
+    it('should successfully delete current auth token', (done) => {
+        photon.removeAuthToken(this.token).then((data) => {
+            expect(data.ok).toBe(true);
             done();
         })
     })
